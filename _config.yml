@@ -1,0 +1,62 @@
+# Site settings
+title: BCL-El Parcero Painting
+email: info@bcl-elparceropainting.com
+description: >-
+  Professional interior and exterior house painting services in Atlanta, Georgia.
+  Quality craftsmanship, reliable service, and competitive pricing for your home painting needs.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://elparceropainting.github.io" # the base hostname & protocol for your site
+twitter_username: ""
+github_username: elparceropainting
+
+# Business Information
+business:
+  name: "BCL-El Parcero Painting"
+  phone: "(404) 555-0123"
+  email: "info@bcl-elparceropainting.com"
+  address: "Atlanta, GA"
+  service_areas: 
+    - "Atlanta"
+    - "Decatur"
+    - "Marietta"
+    - "Buckhead"
+    - "Midtown"
+    - "Sandy Springs"
+  services:
+    - "Interior Painting"
+    - "Exterior Painting"
+    - "Deck Staining"
+    - "Fence Painting"
+    - "Color Consultation"
+
+# Third-party integrations
+formspree_id: "your-formspree-id"
+stripe_publishable_key: "pk_test_your-stripe-key"
+google_analytics: "G-XXXXXXXXXX"
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:name/
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

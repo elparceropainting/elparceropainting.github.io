@@ -1,0 +1,76 @@
+# Jekyll build files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler
+.bundle/
+vendor/
+Gemfile.lock
+
+# Ruby
+*.gem
+.rvmrc
+
+# Local development
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment and configuration files (IMPORTANT FOR SECURITY)
+.env
+.env.local
+.env.production
+config/secrets.yml
+config/master.key
+
+# API Keys and sensitive data (NEVER COMMIT THESE)
+# Add any files containing:
+# - Stripe secret keys
+# - Formspree IDs (if you want to keep them private)
+# - Email passwords
+# - Database credentials
+# - Any private business information
+
+# Node.js (if you add any JavaScript tools later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Temporary files
+*.tmp
+*.temp
+
+# Local Jekyll serve files
+.jekyll-live-reload
+
+# Operating system files
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Personal notes (add your own as needed)
+notes/
+todo.txt
+README-private.md
+
+# Business sensitive files (customize for your needs)
+# customer-data/
+# invoices/
+# contracts/

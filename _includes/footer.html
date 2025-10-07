@@ -1,0 +1,62 @@
+<footer class="site-footer">
+    <div class="wrapper">
+        <div class="footer-content">
+            <div class="footer-col-wrapper">
+                <div class="footer-col footer-col-1">
+                    <h3>{{ site.business.name }}</h3>
+                    <p>Professional painting services in Atlanta, Georgia</p>
+                    <div class="social-links">
+                        <!-- Add social media links when available -->
+                    </div>
+                </div>
+
+                <div class="footer-col footer-col-2">
+                    <h4>Services</h4>
+                    <ul class="service-list">
+                        {% for service in site.business.services %}
+                        <li>{{ service }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-col-3">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:{{ site.business.phone }}">{{ site.business.phone }}</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:{{ site.business.email }}">{{ site.business.email }}</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ site.business.address }}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-col-4">
+                    <h4>Service Areas</h4>
+                    <ul class="area-list">
+                        {% for area in site.business.service_areas %}
+                        <li>{{ area }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.business.name }}. All rights reserved.</p>
+                    <div class="legal-links">
+                        <a href="{{ "/privacy-policy/" | relative_url }}">Privacy Policy</a>
+                        <a href="{{ "/terms-of-service/" | relative_url }}">Terms of Service</a>
+                        <a href="{{ "/payment-policy/" | relative_url }}">Payment Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
