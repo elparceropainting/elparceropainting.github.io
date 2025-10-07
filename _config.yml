@@ -5,7 +5,7 @@ description: >-
   Professional interior and exterior house painting services in Atlanta, Georgia.
   Quality craftsmanship, reliable service, and competitive pricing for your home painting needs.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://bcl-elparceropainting.com" # the base hostname & protocol for your site
+url: "https://elparceropainting.github.io" # the base hostname & protocol for your site
 twitter_username: ""
 github_username: elparceropainting
 

@@ -53,7 +53,8 @@ We'd love to discuss your painting project and provide you with a detailed, no-o
 
 Use the form below to tell us about your project, ask questions, or request your free estimate. We'll get back to you promptly!
 
-<form id="contact-form" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" style="max-width: 600px; margin: 2rem auto;">
+<form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" style="max-width: 600px; margin: 2rem auto;">
+    <input type="hidden" name="_next" value="{{ site.url }}/thank-you/">
     <input type="hidden" name="_subject" value="New Contact Form Submission - {{ site.business.name }}">
     <div class="form-group">
         <label for="name">Full Name *</label>
@@ -126,68 +127,6 @@ Use the form below to tell us about your project, ask questions, or request your
 
     <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send Message</button>
 </form>
-
-<script>
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default form submission
-    
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    // Show loading state
-    submitBtn.innerHTML = '⏳ Sending Message...';
-    submitBtn.disabled = true;
-    
-    // Create FormData from the form
-    const formData = new FormData(form);
-    
-    // Submit form using fetch API
-    fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Success - redirect to thank you page
-            window.location.href = '{{ site.url }}/thank-you/';
-        } else {
-            // Handle error
-            return response.json().then(data => {
-                throw new Error(data.error || 'Form submission failed');
-            });
-        }
-    })
-    .catch(error => {
-        // Show error message
-        submitBtn.innerHTML = '❌ Error - Try Again';
-        submitBtn.disabled = false;
-        
-        // Show error to user
-        const errorDiv = document.createElement('div');
-        errorDiv.style.cssText = 'background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 5px; margin-top: 1rem; border: 1px solid #f5c6cb;';
-        errorDiv.innerHTML = `
-            <strong>Oops!</strong> There was a problem sending your message. Please try again or call us directly at 
-            <a href="tel:{{ site.business.phone }}" style="color: #721c24; font-weight: bold;">{{ site.business.phone }}</a>
-        `;
-        
-        // Remove any existing error messages
-        const existingError = form.querySelector('.error-message');
-        if (existingError) existingError.remove();
-        
-        errorDiv.className = 'error-message';
-        form.appendChild(errorDiv);
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-        }, 3000);
-    });
-});
-</script>
 
 ---
 
