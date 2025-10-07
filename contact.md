@@ -128,6 +128,83 @@ Use the form below to tell us about your project, ask questions, or request your
     <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send Message</button>
 </form>
 
+<!-- Thank you message (hidden by default) -->
+<div id="thank-you-message" style="display: none; max-width: 600px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; border-radius: 10px; text-align: center;">
+    <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
+    <h2 style="color: white; margin-bottom: 1rem;">Thank You!</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Your message has been successfully sent. We'll get back to you within 2-4 hours!</p>
+    <p style="margin-bottom: 1.5rem;">Redirecting to homepage in <span id="countdown">5</span> seconds...</p>
+    <a href="/" class="btn" style="display: inline-block; padding: 10px 20px; background: white; color: #4CAF50; text-decoration: none; border-radius: 5px; font-weight: bold;">Go Home Now</a>
+</div>
+
+<script>
+// Check if user is returning from Formspree
+function checkForFormspreeReturn() {
+    // Check if we came from Formspree or if there's a success parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const referrer = document.referrer;
+    const isFromFormspree = referrer.includes('formspree.io') || urlParams.has('success');
+    
+    // Also check if form was just submitted (browser back navigation)
+    const formSubmitted = sessionStorage.getItem('formSubmitted');
+    
+    if (isFromFormspree || formSubmitted) {
+        // Clear the form
+        const form = document.querySelector('form');
+        if (form) {
+            form.reset();
+            form.style.display = 'none';
+        }
+        
+        // Show thank you message
+        const thankYouMessage = document.getElementById('thank-you-message');
+        if (thankYouMessage) {
+            thankYouMessage.style.display = 'block';
+        }
+        
+        // Clear the session storage
+        sessionStorage.removeItem('formSubmitted');
+        
+        // Start countdown
+        let countdown = 5;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            if (countdownElement) {
+                countdownElement.textContent = countdown;
+            }
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = '/';
+            }
+        }, 1000);
+        
+        // Clean up URL parameters
+        if (urlParams.has('success')) {
+            const cleanUrl = window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+    }
+}
+
+// Mark form as submitted when user submits
+document.querySelector('form').addEventListener('submit', function() {
+    sessionStorage.setItem('formSubmitted', 'true');
+});
+
+// Check on page load
+document.addEventListener('DOMContentLoaded', checkForFormspreeReturn);
+
+// Also check when page becomes visible (handles browser back button)
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+        setTimeout(checkForFormspreeReturn, 100);
+    }
+});
+</script>
+
 ---
 
 ## Why Contact BCL El Parcero Painting?
