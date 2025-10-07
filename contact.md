@@ -129,12 +129,34 @@ Use the form below to tell us about your project, ask questions, or request your
 </form>
 
 <!-- Thank you message (hidden by default) -->
-<div id="thank-you-message" style="display: none; max-width: 600px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; border-radius: 10px; text-align: center;">
-    <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
-    <h2 style="color: white; margin-bottom: 1rem;">Thank You!</h2>
-    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Your message has been successfully sent. We'll get back to you within 2-4 hours!</p>
-    <p style="margin-bottom: 1.5rem;">Redirecting to homepage in <span id="countdown">5</span> seconds...</p>
-    <a href="/" class="btn" style="display: inline-block; padding: 10px 20px; background: white; color: #4CAF50; text-decoration: none; border-radius: 5px; font-weight: bold;">Go Home Now</a>
+<div id="thank-you-message" style="display: none; max-width: 600px; margin: 2rem auto; text-align: center;">
+    <!-- Success Icon -->
+    <div style="display: inline-block; width: 80px; height: 80px; background: #4CAF50; border-radius: 50%; margin-bottom: 1.5rem; position: relative;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2rem; font-weight: bold;">✓</div>
+    </div>
+    
+    <!-- Message Content -->
+    <h2 style="color: #2c5aa0; margin-bottom: 1rem; font-size: 2rem;">Message Sent Successfully!</h2>
+    
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #4CAF50; margin-bottom: 1.5rem; text-align: left;">
+        <p style="margin: 0 0 0.5rem 0; color: #333;"><strong> Your inquiry has been received</strong></p>
+        <p style="margin: 0 0 0.5rem 0; color: #666;"> We'll respond within 2-4 business hours</p>
+        <p style="margin: 0; color: #666;"> For urgent matters: <a href="tel:{{ site.business.phone }}" style="color: #2c5aa0; font-weight: bold;">{{ site.business.phone }}</a></p>
+    </div>
+    
+    <!-- Countdown and navigation -->
+    <p style="color: #666; margin-bottom: 1rem;">
+        Returning to homepage in <span id="countdown" style="color: #2c5aa0; font-weight: bold;">5</span> seconds...
+    </p>
+    
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" style="display: inline-block; padding: 10px 20px; background: #2c5aa0; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s;">
+             Go Home
+        </a>
+        <a href="/services/" style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s;">
+             Our Services
+        </a>
+    </div>
 </div>
 
 <script>
