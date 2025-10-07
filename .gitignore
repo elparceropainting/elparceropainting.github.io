@@ -17,6 +17,7 @@ Gemfile.lock
 .DS_Store
 Thumbs.db
 *.log
+README.md
 
 # IDE and editor files
 .vscode/
