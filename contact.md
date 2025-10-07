@@ -53,7 +53,7 @@ We'd love to discuss your painting project and provide you with a detailed, no-o
 
 Use the form below to tell us about your project, ask questions, or request your free estimate. We'll get back to you promptly!
 
-<form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" data-formspree="true" style="max-width: 600px; margin: 2rem auto;">
+<form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" style="max-width: 600px; margin: 2rem auto;">
     <div class="form-group">
         <label for="name">Full Name *</label>
         <input type="text" id="name" name="name" class="form-control" required>
