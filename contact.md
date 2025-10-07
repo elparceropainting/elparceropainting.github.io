@@ -53,8 +53,7 @@ We'd love to discuss your painting project and provide you with a detailed, no-o
 
 Use the form below to tell us about your project, ask questions, or request your free estimate. We'll get back to you promptly!
 
-<form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" style="max-width: 600px; margin: 2rem auto;">
-    <input type="hidden" name="_next" value="{{ site.url }}/thank-you/">
+<form id="contact-form" action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" style="max-width: 600px; margin: 2rem auto;" target="_blank">
     <input type="hidden" name="_subject" value="New Contact Form Submission - {{ site.business.name }}">
     <div class="form-group">
         <label for="name">Full Name *</label>
@@ -127,6 +126,26 @@ Use the form below to tell us about your project, ask questions, or request your
 
     <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Send Message</button>
 </form>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    // Show a loading message
+    const submitBtn = document.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '⏳ Sending...';
+    submitBtn.disabled = true;
+    
+    // Set a timer to redirect to thank you page
+    setTimeout(function() {
+        // Close the popup window that Formspree opened
+        const popups = window.open('', '_blank');
+        if (popups) popups.close();
+        
+        // Redirect to thank you page
+        window.location.href = '{{ site.url }}/thank-you/';
+    }, 3000); // Wait 3 seconds for form submission to complete
+});
+</script>
 
 ---
 
