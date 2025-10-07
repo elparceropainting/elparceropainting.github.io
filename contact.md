@@ -146,7 +146,7 @@ Use the form below to tell us about your project, ask questions, or request your
     
     <!-- Countdown and navigation -->
     <p style="color: #666; margin-bottom: 1rem;">
-        Returning to homepage in <span id="countdown" style="color: #2c5aa0; font-weight: bold;">5</span> seconds...
+        Returning to homepage in <span id="countdown" style="color: #2c5aa0; font-weight: bold;">10</span> seconds...
     </p>
     
     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
@@ -188,7 +188,7 @@ function checkForFormspreeReturn() {
         sessionStorage.removeItem('formSubmitted');
         
         // Start countdown
-        let countdown = 5;
+        let countdown = 10;
         const countdownElement = document.getElementById('countdown');
         
         const timer = setInterval(() => {
