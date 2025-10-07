@@ -16,7 +16,8 @@ permalink: /get-quote/
 
 Complete the form below to get an instant estimate and schedule your project. For the most accurate quote, please provide as much detail as possible.
 
-<form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" data-formspree="true" id="quote-form" style="max-width: 800px; margin: 0 auto;">
+<form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST" id="quote-form" style="max-width: 800px; margin: 0 auto;">
+    <input type="hidden" name="_subject" value="New Quote Request - {{ site.business.name }}">
     
     <!-- Contact Information -->
     <div style="background: var(--light-gray); padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
@@ -138,6 +139,118 @@ Complete the form below to get an instant estimate and schedule your project. Fo
         </p>
     </div>
 </form>
+
+<!-- Thank you message (hidden by default) -->
+<div id="thank-you-message" style="display: none; max-width: 800px; margin: 2rem auto; text-align: center;">
+    <!-- Success Icon -->
+    <div style="display: inline-block; width: 80px; height: 80px; background: #4CAF50; border-radius: 50%; margin-bottom: 1.5rem; position: relative;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 2rem; font-weight: bold;">✓</div>
+    </div>
+    
+    <!-- Message Content -->
+    <h2 style="color: #2c5aa0; margin-bottom: 1rem; font-size: 2rem;">Quote Request Submitted!</h2>
+    
+    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #4CAF50; margin-bottom: 1.5rem; text-align: left;">
+        <p style="margin: 0 0 0.5rem 0; color: #333;"><strong>✅ Your quote request has been received</strong></p>
+        <p style="margin: 0 0 0.5rem 0; color: #666;">📧 We'll contact you within 4 hours to schedule consultation</p>
+        <p style="margin: 0; color: #666;">📞 For urgent matters: <a href="tel:{{ site.business.phone }}" style="color: #2c5aa0; font-weight: bold;">{{ site.business.phone }}</a></p>
+    </div>
+    
+    <!-- Countdown and navigation -->
+    <p style="color: #666; margin-bottom: 1rem;">
+        Returning to homepage in <span id="countdown" style="color: #2c5aa0; font-weight: bold;">10</span> seconds...
+    </p>
+    
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" style="display: inline-block; padding: 10px 20px; background: #2c5aa0; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s;">
+            🏠 Go Home
+        </a>
+        <a href="/services/" style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s;">
+            🎨 Our Services
+        </a>
+    </div>
+</div>
+
+<script>
+// Check if user is returning from Formspree
+function checkForFormspreeReturn() {
+    // Check if we came from Formspree or if there's a success parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const referrer = document.referrer;
+    const isFromFormspree = referrer.includes('formspree.io') || urlParams.has('success');
+    
+    // Also check if form was just submitted (browser back navigation)
+    const formSubmitted = sessionStorage.getItem('quoteFormSubmitted');
+    
+    if (isFromFormspree || formSubmitted) {
+        // Clear the form
+        const form = document.querySelector('#quote-form');
+        if (form) {
+            form.reset();
+            form.style.display = 'none';
+        }
+        
+        // Hide the "Step 1" header and description
+        const step1Header = document.querySelector('h2');
+        const step1Description = step1Header ? step1Header.nextElementSibling : null;
+        if (step1Header && step1Header.textContent.includes('Step 1')) {
+            step1Header.style.display = 'none';
+            if (step1Description && step1Description.tagName === 'P') {
+                step1Description.style.display = 'none';
+            }
+        }
+        
+        // Show thank you message
+        const thankYouMessage = document.getElementById('thank-you-message');
+        if (thankYouMessage) {
+            thankYouMessage.style.display = 'block';
+        }
+        
+        // Clear the session storage
+        sessionStorage.removeItem('quoteFormSubmitted');
+        
+        // Start countdown
+        let countdown = 10;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            if (countdownElement) {
+                countdownElement.textContent = countdown;
+            }
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = '/';
+            }
+        }, 1000);
+        
+        // Clean up URL parameters
+        if (urlParams.has('success')) {
+            const cleanUrl = window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+    }
+}
+
+// Mark form as submitted when user submits
+const quoteForm = document.querySelector('#quote-form');
+if (quoteForm) {
+    quoteForm.addEventListener('submit', function() {
+        sessionStorage.setItem('quoteFormSubmitted', 'true');
+    });
+}
+
+// Check on page load
+document.addEventListener('DOMContentLoaded', checkForFormspreeReturn);
+
+// Also check when page becomes visible (handles browser back button)
+document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+        setTimeout(checkForFormspreeReturn, 100);
+    }
+});
+</script>
 
 ---
 
