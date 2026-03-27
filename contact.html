@@ -1,0 +1,39 @@
+---
+title: Contact
+permalink: /contact/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact | El Parcero Painting</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="site-root">
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">El Parcero Painting</div>
+      <nav class="nav">
+        <a href="/">Home</a>
+         <a href="/contacto/">Español</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;">
+    <div style="max-width:420px;width:100%;margin:3rem auto 2rem auto;">
+      <h1 style="text-align:center;font-size:2.2rem;font-weight:800;color:var(--navy);margin-bottom:1.5rem;letter-spacing:0.5px;">Contact Us</h1>
+      <form action="https://formspree.io/f/movknvlk" method="POST" style="display:flex;flex-direction:column;gap:1.2rem;background:#fff;padding:2.2rem 2rem 2rem 2rem;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.10);">
+        <label for="name" style="font-weight:600;color:var(--navy);">Name</label>
+        <input type="text" id="name" name="name" required style="padding:.7rem;border-radius:7px;border:1.5px solid #bfc9d1;font-size:1.08rem;">
+        <label for="email" style="font-weight:600;color:var(--navy);">Email</label>
+        <input type="email" id="email" name="email" required style="padding:.7rem;border-radius:7px;border:1.5px solid #bfc9d1;font-size:1.08rem;">
+        <label for="message" style="font-weight:600;color:var(--navy);">Message</label>
+        <textarea id="message" name="message" rows="5" required style="padding:.7rem;border-radius:7px;border:1.5px solid #bfc9d1;font-size:1.08rem;"></textarea>
+        <button type="submit" style="background:var(--navy);color:#fff;padding:.9rem 1.5rem;border:none;border-radius:7px;font-weight:800;font-size:1.13rem;cursor:pointer;letter-spacing:0.5px;box-shadow:0 2px 8px rgba(0,0,0,0.07);margin-top:.5rem;">Send Message</button>
+      </form>
+    </div>
+  </main>
+  <!-- Footer intentionally removed for a cleaner contact page -->
+</body>
+</html>

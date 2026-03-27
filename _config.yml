@@ -19,6 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: El Parcero
+url: "https://bcl-elparceropainting.com"
 email: info@elparcero.com
 description: >-
   El Parcero Painting - Professional painting services for your home or business.
